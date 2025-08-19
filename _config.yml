@@ -9,16 +9,14 @@ github_username: wxfyes
 twitter_username: your_twitter
 
 # 插件
-plugins:
-  - jekyll-feed
-  - jekyll-seo-tag
+plugins: []
 
 # 分页
-paginate: 5
-paginate_path: "/page/:num/"
+# paginate: 5
+# paginate_path: "/page/:num/"
 
 # GitHub Pages 设置
-baseurl: "/tianqueblog"
+baseurl: ""
 url: "https://wxfyes.github.io"
 
 # 构建设置
