@@ -8,10 +8,216 @@ title: 博客 - 天阙教程
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ page.title }}</title>
-    <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+    <title>博客文章 - 天阙教程</title>
+    <link rel="stylesheet" href="assets/css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* 博客页面特定样式 */
+        .blog-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 8rem 0 4rem;
+            color: white;
+            text-align: center;
+        }
+        
+        .blog-header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .blog-header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .blog-content {
+            padding: 4rem 0;
+            background: #f8fafc;
+        }
+        
+        .search-filters {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            margin-bottom: 3rem;
+        }
+        
+        .search-box {
+            position: relative;
+            margin-bottom: 1.5rem;
+        }
+        
+        .search-box input {
+            width: 100%;
+            padding: 1rem 1rem 1rem 3rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 25px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+        
+        .search-box input:focus {
+            outline: none;
+            border-color: #6366f1;
+        }
+        
+        .search-box i {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #9ca3af;
+        }
+        
+        .filter-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .filter-btn {
+            padding: 0.5rem 1.5rem;
+            border: 2px solid #e5e7eb;
+            background: white;
+            color: #666;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: #6366f1;
+            color: white;
+            border-color: #6366f1;
+        }
+        
+        .blog-posts {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+        
+        .blog-post {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .blog-post:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .post-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .post-category {
+            background: #6366f1;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .post-date {
+            color: #9ca3af;
+            font-size: 0.9rem;
+        }
+        
+        .post-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 1rem;
+            line-height: 1.4;
+        }
+        
+        .post-title a {
+            color: inherit;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .post-title a:hover {
+            color: #6366f1;
+        }
+        
+        .post-meta {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 1rem;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .post-meta span {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .post-excerpt {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+        
+        .post-tags {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .post-tag {
+            background: #f3f4f6;
+            color: #666;
+            padding: 0.25rem 0.75rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+        }
+        
+        .read-more {
+            color: #6366f1;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: gap 0.3s ease;
+        }
+        
+        .read-more:hover {
+            gap: 0.75rem;
+        }
+        
+        @media (max-width: 768px) {
+            .blog-header h1 {
+                font-size: 2rem;
+            }
+            
+            .filter-buttons {
+                justify-content: center;
+            }
+            
+            .post-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- 导航栏 -->
@@ -25,9 +231,9 @@ title: 博客 - 天阙教程
             </div>
             <ul class="nav-menu">
                 <li><a href="/" class="nav-link">首页</a></li>
-                <li><a href="/blog" class="nav-link active">博客</a></li>
-                <li><a href="/about" class="nav-link">关于</a></li>
-                <li><a href="/contact" class="nav-link">联系</a></li>
+                <li><a href="/blog.html" class="nav-link active">博客</a></li>
+                <li><a href="/about.html" class="nav-link">关于</a></li>
+                <li><a href="/contact.html" class="nav-link">联系</a></li>
             </ul>
             <div class="nav-toggle">
                 <span class="bar"></span>
@@ -37,24 +243,24 @@ title: 博客 - 天阙教程
         </div>
     </nav>
 
-    <!-- 页面标题 -->
-    <section class="page-header">
+    <!-- 博客头部 -->
+    <section class="blog-header">
         <div class="container">
             <h1>博客文章</h1>
-            <p>探索我们的教程和技巧分享</p>
+            <p>发现实用的教程和技巧分享</p>
         </div>
     </section>
 
-    <!-- 搜索和筛选 -->
-    <section class="blog-filters">
+    <!-- 博客内容 -->
+    <section class="blog-content">
         <div class="container">
-            <div class="filters-container">
+            <!-- 搜索和筛选 -->
+            <div class="search-filters">
                 <div class="search-box">
                     <i class="fas fa-search"></i>
                     <input type="text" placeholder="搜索文章..." id="searchInput">
                 </div>
-                
-                <div class="category-filters">
+                <div class="filter-buttons">
                     <button class="filter-btn active" data-category="all">全部</button>
                     <button class="filter-btn" data-category="教程">教程</button>
                     <button class="filter-btn" data-category="技巧">技巧</button>
@@ -62,171 +268,83 @@ title: 博客 - 天阙教程
                     <button class="filter-btn" data-category="评测">评测</button>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <!-- 博客文章列表 -->
-    <section class="blog-content">
-        <div class="container">
-            <div class="blog-grid" id="blogGrid">
-                {% for post in site.posts %}
-                <article class="blog-card" data-category="{{ post.category | default: '教程' }}">
-                    <div class="blog-image">
-                        <div class="blog-category">{{ post.category | default: '教程' }}</div>
-                        <div class="blog-date">
-                            <span class="day">{{ post.date | date: "%d" }}</span>
-                            <span class="month">{{ post.date | date: "%m月" }}</span>
-                        </div>
+            <!-- 文章列表 -->
+            <div class="blog-posts" id="blogPosts">
+                <article class="blog-post" data-category="教程">
+                    <div class="post-header">
+                        <span class="post-category">教程</span>
+                        <span class="post-date">20 01月</span>
                     </div>
-                    
-                    <div class="blog-content">
-                        <h2 class="blog-title">
-                            <a href="{{ post.url }}">{{ post.title }}</a>
-                        </h2>
-                        
-                        <div class="blog-meta">
-                            <span class="blog-author">
-                                <i class="fas fa-user"></i>
-                                {{ post.author | default: site.author }}
-                            </span>
-                            <span class="blog-time">
-                                <i class="fas fa-clock"></i>
-                                {{ post.date | date: "%Y年%m月%d日" }}
-                            </span>
-                        </div>
-                        
-                        <p class="blog-excerpt">{{ post.excerpt | strip_html | truncate: 150 }}</p>
-                        
-                        <div class="blog-tags">
-                            {% if post.tags %}
-                                {% for tag in post.tags limit:3 %}
-                                <span class="tag">{{ tag }}</span>
-                                {% endfor %}
-                            {% endif %}
-                        </div>
-                        
-                        <a href="{{ post.url }}" class="read-more">
-                            阅读全文
-                            <i class="fas fa-arrow-right"></i>
-                        </a>
+                    <h2 class="post-title">
+                        <a href="/blog.html">使用VS Code写Markdown文章的完整指南</a>
+                    </h2>
+                    <div class="post-meta">
+                        <span><i class="fas fa-user"></i> wxfyes</span>
+                        <span><i class="fas fa-calendar"></i> 2024年01月20日</span>
                     </div>
+                    <p class="post-excerpt">
+                        详细介绍如何使用VS Code编辑器来编写高质量的Markdown文章，包括插件推荐、快捷键使用、实时预览等实用技巧。
+                    </p>
+                    <div class="post-tags">
+                        <span class="post-tag">教程</span>
+                        <span class="post-tag">VS Code</span>
+                        <span class="post-tag">Markdown</span>
+                    </div>
+                    <a href="/blog.html" class="read-more">
+                        阅读全文 <i class="fas fa-arrow-right"></i>
+                    </a>
                 </article>
-                {% endfor %}
-            </div>
-            
-            <!-- 分页 -->
-            <div class="pagination" id="pagination">
-                <button class="page-btn prev" disabled>
-                    <i class="fas fa-chevron-left"></i>
-                    上一页
-                </button>
-                
-                <div class="page-numbers">
-                    <button class="page-btn active">1</button>
-                    <button class="page-btn">2</button>
-                    <button class="page-btn">3</button>
-                    <span class="page-dots">...</span>
-                    <button class="page-btn">10</button>
-                </div>
-                
-                <button class="page-btn next">
-                    下一页
-                    <i class="fas fa-chevron-right"></i>
-                </button>
-            </div>
-        </div>
-    </section>
 
-    <!-- 侧边栏 -->
-    <aside class="blog-sidebar">
-        <div class="container">
-            <div class="sidebar-content">
-                <!-- 热门文章 -->
-                <div class="sidebar-widget">
-                    <h3>热门文章</h3>
-                    <div class="popular-posts">
-                        <div class="popular-post">
-                            <div class="post-number">01</div>
-                            <div class="post-info">
-                                <h4><a href="#">如何快速掌握前端开发</a></h4>
-                                <span class="post-views">1.2K 阅读</span>
-                            </div>
-                        </div>
-                        
-                        <div class="popular-post">
-                            <div class="post-number">02</div>
-                            <div class="post-info">
-                                <h4><a href="#">CSS Grid 布局完全指南</a></h4>
-                                <span class="post-views">856 阅读</span>
-                            </div>
-                        </div>
-                        
-                        <div class="popular-post">
-                            <div class="post-number">03</div>
-                            <div class="post-info">
-                                <h4><a href="#">JavaScript 异步编程详解</a></h4>
-                                <span class="post-views">743 阅读</span>
-                            </div>
-                        </div>
+                <article class="blog-post" data-category="教程">
+                    <div class="post-header">
+                        <span class="post-category">教程</span>
+                        <span class="post-date">15 01月</span>
                     </div>
-                </div>
-                
-                <!-- 分类统计 -->
-                <div class="sidebar-widget">
-                    <h3>文章分类</h3>
-                    <div class="category-stats">
-                        <div class="category-item">
-                            <span class="category-name">教程</span>
-                            <span class="category-count">25</span>
-                        </div>
-                        <div class="category-item">
-                            <span class="category-name">技巧</span>
-                            <span class="category-count">18</span>
-                        </div>
-                        <div class="category-item">
-                            <span class="category-name">新闻</span>
-                            <span class="category-count">12</span>
-                        </div>
-                        <div class="category-item">
-                            <span class="category-name">评测</span>
-                            <span class="category-count">8</span>
-                        </div>
+                    <h2 class="post-title">
+                        <a href="/blog.html">如何在这个博客中写文章</a>
+                    </h2>
+                    <div class="post-meta">
+                        <span><i class="fas fa-user"></i> wxfyes</span>
+                        <span><i class="fas fa-calendar"></i> 2024年01月15日</span>
                     </div>
-                </div>
-                
-                <!-- 标签云 -->
-                <div class="sidebar-widget">
-                    <h3>热门标签</h3>
-                    <div class="tag-cloud">
-                        <span class="tag">JavaScript</span>
-                        <span class="tag">CSS</span>
-                        <span class="tag">HTML</span>
-                        <span class="tag">React</span>
-                        <span class="tag">Vue</span>
-                        <span class="tag">Node.js</span>
-                        <span class="tag">Python</span>
-                        <span class="tag">Git</span>
-                        <span class="tag">Docker</span>
-                        <span class="tag">Linux</span>
+                    <p class="post-excerpt">
+                        详细介绍了在这个Jekyll博客中如何创建和编写新文章的完整指南，包括Front Matter、Markdown语法、发布流程等。
+                    </p>
+                    <div class="post-tags">
+                        <span class="post-tag">教程</span>
+                        <span class="post-tag">Jekyll</span>
+                        <span class="post-tag">写作</span>
                     </div>
-                </div>
-            </div>
-        </div>
-    </aside>
+                    <a href="/blog.html" class="read-more">
+                        阅读全文 <i class="fas fa-arrow-right"></i>
+                    </a>
+                </article>
 
-    <!-- 订阅区域 -->
-    <section class="newsletter">
-        <div class="container">
-            <div class="newsletter-content">
-                <h2>订阅我们的更新</h2>
-                <p>获取最新的教程和技巧，不错过任何精彩内容</p>
-                <form class="newsletter-form">
-                    <input type="email" placeholder="输入您的邮箱地址" required>
-                    <button type="submit" class="btn btn-primary">
-                        <i class="fas fa-paper-plane"></i>
-                        订阅
-                    </button>
-                </form>
+                <article class="blog-post" data-category="技巧">
+                    <div class="post-header">
+                        <span class="post-category">技巧</span>
+                        <span class="post-date">10 01月</span>
+                    </div>
+                    <h2 class="post-title">
+                        <a href="/blog.html">提高工作效率的10个实用技巧</a>
+                    </h2>
+                    <div class="post-meta">
+                        <span><i class="fas fa-user"></i> wxfyes</span>
+                        <span><i class="fas fa-calendar"></i> 2024年01月10日</span>
+                    </div>
+                    <p class="post-excerpt">
+                        分享10个经过实践验证的工作效率提升技巧，帮助你更好地管理时间、提高专注力和工作质量。
+                    </p>
+                    <div class="post-tags">
+                        <span class="post-tag">技巧</span>
+                        <span class="post-tag">效率</span>
+                        <span class="post-tag">时间管理</span>
+                    </div>
+                    <a href="/blog.html" class="read-more">
+                        阅读全文 <i class="fas fa-arrow-right"></i>
+                    </a>
+                </article>
             </div>
         </div>
     </section>
@@ -239,7 +357,7 @@ title: 博客 - 天阙教程
                     <h3>天阙教程</h3>
                     <p>分享实用的使用方法和技巧，让学习变得更简单</p>
                     <div class="social-links">
-                        <a href="https://github.com/{{ site.github_username }}" target="_blank">
+                        <a href="https://github.com/wxfyes" target="_blank">
                             <i class="fab fa-github"></i>
                         </a>
                         <a href="#" target="_blank">
@@ -254,9 +372,9 @@ title: 博客 - 天阙教程
                     <h4>快速链接</h4>
                     <ul>
                         <li><a href="/">首页</a></li>
-                        <li><a href="/blog">博客</a></li>
-                        <li><a href="/about">关于</a></li>
-                        <li><a href="/contact">联系</a></li>
+                        <li><a href="/blog.html">博客</a></li>
+                        <li><a href="/about.html">关于</a></li>
+                        <li><a href="/contact.html">联系</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
@@ -286,59 +404,53 @@ title: 博客 - 天阙教程
         </div>
     </footer>
 
-    <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
+    <script src="assets/js/main.js"></script>
     <script>
-        // 搜索功能
-        document.getElementById('searchInput').addEventListener('input', function() {
-            const searchTerm = this.value.toLowerCase();
-            const blogCards = document.querySelectorAll('.blog-card');
-            
-            blogCards.forEach(card => {
-                const title = card.querySelector('.blog-title').textContent.toLowerCase();
-                const excerpt = card.querySelector('.blog-excerpt').textContent.toLowerCase();
-                
-                if (title.includes(searchTerm) || excerpt.includes(searchTerm)) {
-                    card.style.display = 'block';
-                } else {
-                    card.style.display = 'none';
-                }
+        // 搜索和筛选功能
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.getElementById('searchInput');
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const blogPosts = document.querySelectorAll('.blog-post');
+
+            // 搜索功能
+            searchInput.addEventListener('input', function() {
+                const searchTerm = this.value.toLowerCase();
+                filterPosts();
             });
-        });
-        
-        // 分类筛选
-        document.querySelectorAll('.filter-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                // 移除所有活动状态
-                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-                // 添加当前活动状态
-                this.classList.add('active');
-                
-                const category = this.getAttribute('data-category');
-                const blogCards = document.querySelectorAll('.blog-card');
-                
-                blogCards.forEach(card => {
-                    if (category === 'all' || card.getAttribute('data-category') === category) {
-                        card.style.display = 'block';
-                    } else {
-                        card.style.display = 'none';
-                    }
-                });
-            });
-        });
-        
-        // 分页功能
-        document.querySelectorAll('.page-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                if (this.classList.contains('prev') || this.classList.contains('next')) {
-                    // 处理上一页/下一页逻辑
-                    console.log('Navigate to:', this.classList.contains('prev') ? 'previous' : 'next');
-                } else {
+
+            // 筛选功能
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
                     // 移除所有活动状态
-                    document.querySelectorAll('.page-btn').forEach(b => b.classList.remove('active'));
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
                     // 添加当前活动状态
                     this.classList.add('active');
-                }
+                    filterPosts();
+                });
             });
+
+            function filterPosts() {
+                const searchTerm = searchInput.value.toLowerCase();
+                const activeCategory = document.querySelector('.filter-btn.active').dataset.category;
+
+                blogPosts.forEach(post => {
+                    const title = post.querySelector('.post-title').textContent.toLowerCase();
+                    const excerpt = post.querySelector('.post-excerpt').textContent.toLowerCase();
+                    const category = post.dataset.category;
+                    const tags = Array.from(post.querySelectorAll('.post-tag')).map(tag => tag.textContent.toLowerCase());
+
+                    const matchesSearch = title.includes(searchTerm) || 
+                                        excerpt.includes(searchTerm) || 
+                                        tags.some(tag => tag.includes(searchTerm));
+                    const matchesCategory = activeCategory === 'all' || category === activeCategory;
+
+                    if (matchesSearch && matchesCategory) {
+                        post.style.display = 'block';
+                    } else {
+                        post.style.display = 'none';
+                    }
+                });
+            }
         });
     </script>
 </body>
