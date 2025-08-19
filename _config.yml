@@ -16,3 +16,21 @@ plugins:
 # 分页
 paginate: 5
 paginate_path: "/page/:num/"
+
+# GitHub Pages 设置
+baseurl: ""
+url: "https://wxfyes.github.io"
+
+# 构建设置
+markdown: kramdown
+highlighter: rouge
+
+# 排除文件
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
