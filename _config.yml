@@ -1,15 +1,18 @@
-title: 我的博客
-description: 个人技术博客
-author: 您的名字
-email: your-email@example.com
-
-# Jekyll配置
+# _config.yml
+title: 天阙教程
+description: 使用教程分享
+author: wxfyes
 theme: minima
+
+# 社交链接
+github_username: wxfyes
+twitter_username: your_twitter
+
+# 插件
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
 
-# 社交链接
-social_links:
-  github: 您的GitHub用户名
-  twitter: 您的Twitter用户名
+# 分页
+paginate: 5
+paginate_path: "/page/:num/"
