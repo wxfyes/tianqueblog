@@ -18,16 +18,16 @@ title: 天阙教程 - 分享使用方法
     <nav class="navbar">
         <div class="nav-container">
             <div class="nav-logo">
-                <a href="/">
+                <a href="{{ '/' | relative_url }}">
                     <i class="fas fa-book-open"></i>
                     <span>天阙教程</span>
                 </a>
             </div>
             <ul class="nav-menu">
-                <li><a href="/" class="nav-link active">首页</a></li>
-                <li><a href="/blog" class="nav-link">博客</a></li>
-                <li><a href="/about" class="nav-link">关于</a></li>
-                <li><a href="/contact" class="nav-link">联系</a></li>
+                <li><a href="{{ '/' | relative_url }}" class="nav-link active">首页</a></li>
+                <li><a href="{{ '/blog.html' | relative_url }}" class="nav-link">博客</a></li>
+                <li><a href="{{ '/about.html' | relative_url }}" class="nav-link">关于</a></li>
+                <li><a href="{{ '/contact.html' | relative_url }}" class="nav-link">联系</a></li>
             </ul>
             <div class="nav-toggle">
                 <span class="bar"></span>
@@ -44,11 +44,11 @@ title: 天阙教程 - 分享使用方法
                 <h1 class="hero-title">欢迎来到天阙教程</h1>
                 <p class="hero-subtitle">分享实用的使用方法和技巧，让学习变得更简单</p>
                 <div class="hero-buttons">
-                    <a href="/blog" class="btn btn-primary">
+                    <a href="{{ '/blog.html' | relative_url }}" class="btn btn-primary">
                         <i class="fas fa-book"></i>
                         开始阅读
                     </a>
-                    <a href="/about" class="btn btn-secondary">
+                    <a href="{{ '/about.html' | relative_url }}" class="btn btn-secondary">
                         <i class="fas fa-info-circle"></i>
                         了解更多
                     </a>
