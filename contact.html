@@ -8,10 +8,264 @@ title: 联系我们 - 天阙教程
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ page.title }}</title>
-    <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+    <title>联系我们 - 天阙教程</title>
+    <link rel="stylesheet" href="assets/css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* 联系页面特定样式 */
+        .contact-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 8rem 0 4rem;
+            color: white;
+            text-align: center;
+        }
+        
+        .contact-header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .contact-header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .contact-content {
+            padding: 4rem 0;
+            background: #f8fafc;
+        }
+        
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+        
+        .contact-info {
+            background: white;
+            border-radius: 15px;
+            padding: 3rem;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .contact-info h2 {
+            color: #333;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+        
+        .contact-info h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: #6366f1;
+            border-radius: 2px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: #f8fafc;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+        
+        .contact-item:hover {
+            transform: translateX(10px);
+        }
+        
+        .contact-item i {
+            width: 50px;
+            height: 50px;
+            background: #6366f1;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            margin-right: 1.5rem;
+        }
+        
+        .contact-item-content h3 {
+            color: #333;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+        
+        .contact-item-content p {
+            color: #666;
+            margin: 0;
+        }
+        
+        .contact-form {
+            background: white;
+            border-radius: 15px;
+            padding: 3rem;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .contact-form h2 {
+            color: #333;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+        
+        .contact-form h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: #6366f1;
+            border-radius: 2px;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            color: #333;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+            font-family: inherit;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #6366f1;
+        }
+        
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+        
+        .submit-btn {
+            background: #6366f1;
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .submit-btn:hover {
+            background: #5855eb;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(99, 102, 241, 0.4);
+        }
+        
+        .faq-section {
+            background: white;
+            border-radius: 15px;
+            padding: 3rem;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .faq-section h2 {
+            color: #333;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        
+        .faq-item {
+            border-bottom: 1px solid #e5e7eb;
+            margin-bottom: 1rem;
+        }
+        
+        .faq-question {
+            padding: 1.5rem 0;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            color: #333;
+            transition: color 0.3s ease;
+        }
+        
+        .faq-question:hover {
+            color: #6366f1;
+        }
+        
+        .faq-question i {
+            transition: transform 0.3s ease;
+        }
+        
+        .faq-question.active i {
+            transform: rotate(180deg);
+        }
+        
+        .faq-answer {
+            padding: 0 0 1.5rem;
+            color: #666;
+            line-height: 1.6;
+            display: none;
+        }
+        
+        .faq-answer.active {
+            display: block;
+        }
+        
+        @media (max-width: 768px) {
+            .contact-header h1 {
+                font-size: 2rem;
+            }
+            
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .contact-info,
+            .contact-form {
+                padding: 2rem;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- 导航栏 -->
@@ -25,9 +279,9 @@ title: 联系我们 - 天阙教程
             </div>
             <ul class="nav-menu">
                 <li><a href="/" class="nav-link">首页</a></li>
-                <li><a href="/blog" class="nav-link">博客</a></li>
-                <li><a href="/about" class="nav-link">关于</a></li>
-                <li><a href="/contact" class="nav-link active">联系</a></li>
+                <li><a href="/blog.html" class="nav-link">博客</a></li>
+                <li><a href="/about.html" class="nav-link">关于</a></li>
+                <li><a href="/contact.html" class="nav-link active">联系</a></li>
             </ul>
             <div class="nav-toggle">
                 <span class="bar"></span>
@@ -37,159 +291,124 @@ title: 联系我们 - 天阙教程
         </div>
     </nav>
 
-    <!-- 页面标题 -->
-    <section class="page-header">
+    <!-- 联系头部 -->
+    <section class="contact-header">
         <div class="container">
             <h1>联系我们</h1>
             <p>有任何问题或建议？我们很乐意听到您的声音</p>
         </div>
     </section>
 
-    <!-- 联系信息 -->
-    <section class="contact-info-section">
+    <!-- 联系内容 -->
+    <section class="contact-content">
         <div class="container">
-            <div class="contact-info-grid">
-                <div class="contact-card">
-                    <div class="contact-icon">
+            <div class="contact-grid">
+                <!-- 联系信息 -->
+                <div class="contact-info">
+                    <h2>联系方式</h2>
+                    <div class="contact-item">
                         <i class="fas fa-envelope"></i>
+                        <div class="contact-item-content">
+                            <h3>邮箱</h3>
+                            <p>contact@tianque.com</p>
+                        </div>
                     </div>
-                    <h3>邮箱联系</h3>
-                    <p>contact@tianque.com</p>
-                    <p>我们会在24小时内回复您的邮件</p>
-                </div>
-                
-                <div class="contact-card">
-                    <div class="contact-icon">
+                    <div class="contact-item">
                         <i class="fab fa-github"></i>
+                        <div class="contact-item-content">
+                            <h3>GitHub</h3>
+                            <p>github.com/wxfyes</p>
+                        </div>
                     </div>
-                    <h3>GitHub</h3>
-                    <p>github.com/wxfyes</p>
-                    <p>关注我们的开源项目</p>
-                </div>
-                
-                <div class="contact-card">
-                    <div class="contact-icon">
+                    <div class="contact-item">
                         <i class="fab fa-weixin"></i>
+                        <div class="contact-item-content">
+                            <h3>微信</h3>
+                            <p>扫描二维码添加</p>
+                        </div>
                     </div>
-                    <h3>微信</h3>
-                    <p>扫描二维码添加</p>
-                    <p>加入我们的技术交流群</p>
-                </div>
-                
-                <div class="contact-card">
-                    <div class="contact-icon">
-                        <i class="fas fa-clock"></i>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div class="contact-item-content">
+                            <h3>地址</h3>
+                            <p>中国</p>
+                        </div>
                     </div>
-                    <h3>响应时间</h3>
-                    <p>工作日 9:00-18:00</p>
-                    <p>我们会在工作时间内快速响应</p>
                 </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- 联系表单 -->
-    <section class="contact-form-section">
-        <div class="container">
-            <div class="contact-form-container">
-                <div class="form-header">
+                <!-- 联系表单 -->
+                <div class="contact-form">
                     <h2>发送消息</h2>
-                    <p>填写下面的表单，我们会尽快与您联系</p>
+                    <form id="contactForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="name">姓名</label>
+                                <input type="text" id="name" name="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">邮箱</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">主题</label>
+                            <select id="subject" name="subject" required>
+                                <option value="">请选择主题</option>
+                                <option value="general">一般咨询</option>
+                                <option value="technical">技术支持</option>
+                                <option value="suggestion">建议反馈</option>
+                                <option value="cooperation">合作洽谈</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">消息内容</label>
+                            <textarea id="message" name="message" placeholder="请详细描述您的问题或建议..." required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">
+                            <i class="fas fa-paper-plane"></i>
+                            发送消息
+                        </button>
+                    </form>
                 </div>
-                
-                <form class="contact-form" id="contactForm">
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="name">姓名 *</label>
-                            <input type="text" id="name" name="name" placeholder="您的姓名" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">邮箱 *</label>
-                            <input type="email" id="email" name="email" placeholder="您的邮箱地址" required>
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="subject">主题</label>
-                        <input type="text" id="subject" name="subject" placeholder="消息主题">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="category">问题类型</label>
-                        <select id="category" name="category">
-                            <option value="">请选择问题类型</option>
-                            <option value="general">一般咨询</option>
-                            <option value="technical">技术问题</option>
-                            <option value="suggestion">建议反馈</option>
-                            <option value="cooperation">合作洽谈</option>
-                            <option value="other">其他</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="message">消息内容 *</label>
-                        <textarea id="message" name="message" rows="6" placeholder="请详细描述您的问题或建议..." required></textarea>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label class="checkbox-label">
-                            <input type="checkbox" name="newsletter" value="1">
-                            <span class="checkmark"></span>
-                            订阅我们的更新通知
-                        </label>
-                    </div>
-                    
-                    <button type="submit" class="btn btn-primary btn-large">
-                        <i class="fas fa-paper-plane"></i>
-                        发送消息
-                    </button>
-                </form>
             </div>
-        </div>
-    </section>
 
-    <!-- FAQ部分 -->
-    <section class="faq-section">
-        <div class="container">
-            <h2 class="section-title">常见问题</h2>
-            <div class="faq-grid">
+            <!-- 常见问题 -->
+            <div class="faq-section">
+                <h2>常见问题</h2>
                 <div class="faq-item">
                     <div class="faq-question">
-                        <h3>如何开始使用天阙教程？</h3>
+                        <span>如何在这个博客中写文章？</span>
                         <i class="fas fa-chevron-down"></i>
                     </div>
                     <div class="faq-answer">
-                        <p>您可以直接浏览我们的教程文章，或者使用搜索功能找到您感兴趣的主题。建议从基础教程开始，逐步深入学习。</p>
+                        我们提供了详细的写作指南，包括Markdown语法、Front Matter格式、发布流程等。您可以参考我们的"如何写文章"教程。
                     </div>
                 </div>
-                
                 <div class="faq-item">
                     <div class="faq-question">
-                        <h3>教程内容多久更新一次？</h3>
+                        <span>可以投稿吗？</span>
                         <i class="fas fa-chevron-down"></i>
                     </div>
                     <div class="faq-answer">
-                        <p>我们每周都会发布新的教程内容，同时也会根据用户反馈和技术发展趋势更新现有内容。</p>
+                        欢迎投稿！我们接受高质量的技术文章、教程和技巧分享。请通过邮箱联系我们，我们会尽快回复。
                     </div>
                 </div>
-                
                 <div class="faq-item">
                     <div class="faq-question">
-                        <h3>可以请求特定的教程主题吗？</h3>
+                        <span>如何订阅更新？</span>
                         <i class="fas fa-chevron-down"></i>
                     </div>
                     <div class="faq-answer">
-                        <p>当然可以！您可以通过联系表单或邮件向我们提出建议，我们会认真考虑并优先安排热门主题的教程。</p>
+                        您可以在首页的订阅区域输入邮箱地址，我们会定期发送最新的教程和技巧到您的邮箱。
                     </div>
                 </div>
-                
                 <div class="faq-item">
                     <div class="faq-question">
-                        <h3>如何参与社区讨论？</h3>
+                        <span>有技术交流群吗？</span>
                         <i class="fas fa-chevron-down"></i>
                     </div>
                     <div class="faq-answer">
-                        <p>您可以在文章下方留言，加入我们的微信群，或者在GitHub上参与讨论。我们欢迎所有形式的交流！</p>
+                        我们正在筹备技术交流群，届时会通过公众号和网站公告通知大家。敬请期待！
                     </div>
                 </div>
             </div>
@@ -204,7 +423,7 @@ title: 联系我们 - 天阙教程
                     <h3>天阙教程</h3>
                     <p>分享实用的使用方法和技巧，让学习变得更简单</p>
                     <div class="social-links">
-                        <a href="https://github.com/{{ site.github_username }}" target="_blank">
+                        <a href="https://github.com/wxfyes" target="_blank">
                             <i class="fab fa-github"></i>
                         </a>
                         <a href="#" target="_blank">
@@ -219,9 +438,9 @@ title: 联系我们 - 天阙教程
                     <h4>快速链接</h4>
                     <ul>
                         <li><a href="/">首页</a></li>
-                        <li><a href="/blog">博客</a></li>
-                        <li><a href="/about">关于</a></li>
-                        <li><a href="/contact">联系</a></li>
+                        <li><a href="/blog.html">博客</a></li>
+                        <li><a href="/about.html">关于</a></li>
+                        <li><a href="/contact.html">联系</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
@@ -251,7 +470,7 @@ title: 联系我们 - 天阙教程
         </div>
     </footer>
 
-    <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
+    <script src="assets/js/main.js"></script>
     <script>
         // 联系表单处理
         document.getElementById('contactForm').addEventListener('submit', function(e) {
@@ -259,31 +478,34 @@ title: 联系我们 - 天阙教程
             
             // 获取表单数据
             const formData = new FormData(this);
-            const data = Object.fromEntries(formData);
+            const name = formData.get('name');
+            const email = formData.get('email');
+            const subject = formData.get('subject');
+            const message = formData.get('message');
             
             // 显示成功消息
-            showNotification('消息发送成功！我们会尽快与您联系。', 'success');
+            alert('感谢您的消息！我们会尽快回复您。');
             
             // 重置表单
             this.reset();
         });
-        
-        // FAQ展开/收起
+
+        // FAQ 展开/收起
         document.querySelectorAll('.faq-question').forEach(question => {
             question.addEventListener('click', function() {
-                const item = this.parentElement;
                 const answer = this.nextElementSibling;
-                const icon = this.querySelector('i');
+                const isActive = this.classList.contains('active');
                 
-                // 切换展开状态
-                item.classList.toggle('active');
+                // 关闭其他所有FAQ
+                document.querySelectorAll('.faq-question').forEach(q => {
+                    q.classList.remove('active');
+                    q.nextElementSibling.classList.remove('active');
+                });
                 
-                if (item.classList.contains('active')) {
-                    answer.style.maxHeight = answer.scrollHeight + 'px';
-                    icon.style.transform = 'rotate(180deg)';
-                } else {
-                    answer.style.maxHeight = '0';
-                    icon.style.transform = 'rotate(0deg)';
+                // 切换当前FAQ
+                if (!isActive) {
+                    this.classList.add('active');
+                    answer.classList.add('active');
                 }
             });
         });
