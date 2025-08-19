@@ -1,0 +1,15 @@
+title: 我的博客
+description: 个人技术博客
+author: 您的名字
+email: your-email@example.com
+
+# Jekyll配置
+theme: minima
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+
+# 社交链接
+social_links:
+  github: 您的GitHub用户名
+  twitter: 您的Twitter用户名
