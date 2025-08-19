@@ -6,6 +6,8 @@
     <title>{% if page.title %}{{ page.title }} - {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
     <meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html }}{% else %}{{ site.description }}{% endif %}">
     <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
     <header class="site-header">
@@ -29,5 +31,7 @@
             <p>&copy; {{ site.time | date: '%Y' }} {{ site.title }}. All rights reserved.</p>
         </div>
     </footer>
+    
+    <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
 </body>
 </html>
