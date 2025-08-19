@@ -1,0 +1,33 @@
+{
+  "name": "tianqueblog",
+  "version": "1.0.0",
+  "description": "天阙教程 - 现代化博客网站",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx serve . -p 3000",
+    "dev": "npx serve . -p 3000",
+    "build": "echo '静态网站，无需构建'",
+    "preview": "npx serve . -p 3000"
+  },
+  "keywords": [
+    "blog",
+    "tutorial",
+    "static-site",
+    "jekyll",
+    "css",
+    "javascript"
+  ],
+  "author": "wxfyes",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wxfyes/tianqueblog.git"
+  },
+  "homepage": "https://tianque.com",
+  "devDependencies": {
+    "serve": "^14.2.1"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}

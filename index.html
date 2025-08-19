@@ -1,20 +1,210 @@
 ---
 layout: default
-title: 首页
+title: 天阙教程 - 分享使用方法
 ---
 
-<div class="welcome">
-    <h1>欢迎来到天阙教程</h1>
-    <p>分享使用方法</p>
-</div>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ page.title }}</title>
+    <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="/">
+                    <i class="fas fa-book-open"></i>
+                    <span>天阙教程</span>
+                </a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="/" class="nav-link active">首页</a></li>
+                <li><a href="/blog" class="nav-link">博客</a></li>
+                <li><a href="/about" class="nav-link">关于</a></li>
+                <li><a href="/contact" class="nav-link">联系</a></li>
+            </ul>
+            <div class="nav-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
 
-<div class="recent-posts">
-    <h2>最新文章</h2>
-    {% for post in site.posts limit:5 %}
-    <article class="post-preview">
-        <h3><a href="{{ post.url }}">{{ post.title }}</a></h3>
-        <time>{{ post.date | date: "%Y-%m-%d" }}</time>
-        <p>{{ post.excerpt | strip_html | truncate: 150 }}</p>
-    </article>
-    {% endfor %}
-</div>
+    <!-- 英雄区域 -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">欢迎来到天阙教程</h1>
+                <p class="hero-subtitle">分享实用的使用方法和技巧，让学习变得更简单</p>
+                <div class="hero-buttons">
+                    <a href="/blog" class="btn btn-primary">
+                        <i class="fas fa-book"></i>
+                        开始阅读
+                    </a>
+                    <a href="/about" class="btn btn-secondary">
+                        <i class="fas fa-info-circle"></i>
+                        了解更多
+                    </a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="floating-card">
+                    <i class="fas fa-lightbulb"></i>
+                    <h3>实用技巧</h3>
+                    <p>发现更多实用的小技巧</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 特色内容 -->
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">为什么选择我们</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3>专业教程</h3>
+                    <p>提供详细、易懂的教程内容，帮助您快速掌握技能</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3>及时更新</h3>
+                    <p>定期更新最新内容，紧跟技术发展趋势</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>社区支持</h3>
+                    <p>活跃的社区讨论，解答您的疑问</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 最新文章 -->
+    <section class="recent-posts">
+        <div class="container">
+            <h2 class="section-title">最新文章</h2>
+            <div class="posts-grid">
+                {% for post in site.posts limit:6 %}
+                <article class="post-card">
+                    <div class="post-image">
+                        <div class="post-category">{{ post.category | default: '教程' }}</div>
+                    </div>
+                    <div class="post-content">
+                        <h3 class="post-title">
+                            <a href="{{ post.url }}">{{ post.title }}</a>
+                        </h3>
+                        <div class="post-meta">
+                            <span class="post-date">
+                                <i class="fas fa-calendar"></i>
+                                {{ post.date | date: "%Y年%m月%d日" }}
+                            </span>
+                            <span class="post-author">
+                                <i class="fas fa-user"></i>
+                                {{ post.author | default: site.author }}
+                            </span>
+                        </div>
+                        <p class="post-excerpt">{{ post.excerpt | strip_html | truncate: 120 }}</p>
+                        <a href="{{ post.url }}" class="read-more">
+                            阅读更多
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </article>
+                {% endfor %}
+            </div>
+            <div class="posts-cta">
+                <a href="/blog" class="btn btn-outline">查看所有文章</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 订阅区域 -->
+    <section class="newsletter">
+        <div class="container">
+            <div class="newsletter-content">
+                <h2>订阅我们的更新</h2>
+                <p>获取最新的教程和技巧，不错过任何精彩内容</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="输入您的邮箱地址" required>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-paper-plane"></i>
+                        订阅
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>天阙教程</h3>
+                    <p>分享实用的使用方法和技巧，让学习变得更简单</p>
+                    <div class="social-links">
+                        <a href="https://github.com/{{ site.github_username }}" target="_blank">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="#" target="_blank">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" target="_blank">
+                            <i class="fab fa-weixin"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>快速链接</h4>
+                    <ul>
+                        <li><a href="/">首页</a></li>
+                        <li><a href="/blog">博客</a></li>
+                        <li><a href="/about">关于</a></li>
+                        <li><a href="/contact">联系</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>分类</h4>
+                    <ul>
+                        <li><a href="/category/tutorial">教程</a></li>
+                        <li><a href="/category/tips">技巧</a></li>
+                        <li><a href="/category/news">新闻</a></li>
+                        <li><a href="/category/review">评测</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>联系我们</h4>
+                    <p>
+                        <i class="fas fa-envelope"></i>
+                        contact@tianque.com
+                    </p>
+                    <p>
+                        <i class="fas fa-map-marker-alt"></i>
+                        中国
+                    </p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 天阙教程. 保留所有权利.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
+</body>
+</html>

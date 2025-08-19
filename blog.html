@@ -1,0 +1,345 @@
+---
+layout: default
+title: 博客 - 天阙教程
+---
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ page.title }}</title>
+    <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="/">
+                    <i class="fas fa-book-open"></i>
+                    <span>天阙教程</span>
+                </a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="/" class="nav-link">首页</a></li>
+                <li><a href="/blog" class="nav-link active">博客</a></li>
+                <li><a href="/about" class="nav-link">关于</a></li>
+                <li><a href="/contact" class="nav-link">联系</a></li>
+            </ul>
+            <div class="nav-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 页面标题 -->
+    <section class="page-header">
+        <div class="container">
+            <h1>博客文章</h1>
+            <p>探索我们的教程和技巧分享</p>
+        </div>
+    </section>
+
+    <!-- 搜索和筛选 -->
+    <section class="blog-filters">
+        <div class="container">
+            <div class="filters-container">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="搜索文章..." id="searchInput">
+                </div>
+                
+                <div class="category-filters">
+                    <button class="filter-btn active" data-category="all">全部</button>
+                    <button class="filter-btn" data-category="教程">教程</button>
+                    <button class="filter-btn" data-category="技巧">技巧</button>
+                    <button class="filter-btn" data-category="新闻">新闻</button>
+                    <button class="filter-btn" data-category="评测">评测</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 博客文章列表 -->
+    <section class="blog-content">
+        <div class="container">
+            <div class="blog-grid" id="blogGrid">
+                {% for post in site.posts %}
+                <article class="blog-card" data-category="{{ post.category | default: '教程' }}">
+                    <div class="blog-image">
+                        <div class="blog-category">{{ post.category | default: '教程' }}</div>
+                        <div class="blog-date">
+                            <span class="day">{{ post.date | date: "%d" }}</span>
+                            <span class="month">{{ post.date | date: "%m月" }}</span>
+                        </div>
+                    </div>
+                    
+                    <div class="blog-content">
+                        <h2 class="blog-title">
+                            <a href="{{ post.url }}">{{ post.title }}</a>
+                        </h2>
+                        
+                        <div class="blog-meta">
+                            <span class="blog-author">
+                                <i class="fas fa-user"></i>
+                                {{ post.author | default: site.author }}
+                            </span>
+                            <span class="blog-time">
+                                <i class="fas fa-clock"></i>
+                                {{ post.date | date: "%Y年%m月%d日" }}
+                            </span>
+                        </div>
+                        
+                        <p class="blog-excerpt">{{ post.excerpt | strip_html | truncate: 150 }}</p>
+                        
+                        <div class="blog-tags">
+                            {% if post.tags %}
+                                {% for tag in post.tags limit:3 %}
+                                <span class="tag">{{ tag }}</span>
+                                {% endfor %}
+                            {% endif %}
+                        </div>
+                        
+                        <a href="{{ post.url }}" class="read-more">
+                            阅读全文
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </article>
+                {% endfor %}
+            </div>
+            
+            <!-- 分页 -->
+            <div class="pagination" id="pagination">
+                <button class="page-btn prev" disabled>
+                    <i class="fas fa-chevron-left"></i>
+                    上一页
+                </button>
+                
+                <div class="page-numbers">
+                    <button class="page-btn active">1</button>
+                    <button class="page-btn">2</button>
+                    <button class="page-btn">3</button>
+                    <span class="page-dots">...</span>
+                    <button class="page-btn">10</button>
+                </div>
+                
+                <button class="page-btn next">
+                    下一页
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 侧边栏 -->
+    <aside class="blog-sidebar">
+        <div class="container">
+            <div class="sidebar-content">
+                <!-- 热门文章 -->
+                <div class="sidebar-widget">
+                    <h3>热门文章</h3>
+                    <div class="popular-posts">
+                        <div class="popular-post">
+                            <div class="post-number">01</div>
+                            <div class="post-info">
+                                <h4><a href="#">如何快速掌握前端开发</a></h4>
+                                <span class="post-views">1.2K 阅读</span>
+                            </div>
+                        </div>
+                        
+                        <div class="popular-post">
+                            <div class="post-number">02</div>
+                            <div class="post-info">
+                                <h4><a href="#">CSS Grid 布局完全指南</a></h4>
+                                <span class="post-views">856 阅读</span>
+                            </div>
+                        </div>
+                        
+                        <div class="popular-post">
+                            <div class="post-number">03</div>
+                            <div class="post-info">
+                                <h4><a href="#">JavaScript 异步编程详解</a></h4>
+                                <span class="post-views">743 阅读</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 分类统计 -->
+                <div class="sidebar-widget">
+                    <h3>文章分类</h3>
+                    <div class="category-stats">
+                        <div class="category-item">
+                            <span class="category-name">教程</span>
+                            <span class="category-count">25</span>
+                        </div>
+                        <div class="category-item">
+                            <span class="category-name">技巧</span>
+                            <span class="category-count">18</span>
+                        </div>
+                        <div class="category-item">
+                            <span class="category-name">新闻</span>
+                            <span class="category-count">12</span>
+                        </div>
+                        <div class="category-item">
+                            <span class="category-name">评测</span>
+                            <span class="category-count">8</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 标签云 -->
+                <div class="sidebar-widget">
+                    <h3>热门标签</h3>
+                    <div class="tag-cloud">
+                        <span class="tag">JavaScript</span>
+                        <span class="tag">CSS</span>
+                        <span class="tag">HTML</span>
+                        <span class="tag">React</span>
+                        <span class="tag">Vue</span>
+                        <span class="tag">Node.js</span>
+                        <span class="tag">Python</span>
+                        <span class="tag">Git</span>
+                        <span class="tag">Docker</span>
+                        <span class="tag">Linux</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- 订阅区域 -->
+    <section class="newsletter">
+        <div class="container">
+            <div class="newsletter-content">
+                <h2>订阅我们的更新</h2>
+                <p>获取最新的教程和技巧，不错过任何精彩内容</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="输入您的邮箱地址" required>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-paper-plane"></i>
+                        订阅
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>天阙教程</h3>
+                    <p>分享实用的使用方法和技巧，让学习变得更简单</p>
+                    <div class="social-links">
+                        <a href="https://github.com/{{ site.github_username }}" target="_blank">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="#" target="_blank">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" target="_blank">
+                            <i class="fab fa-weixin"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>快速链接</h4>
+                    <ul>
+                        <li><a href="/">首页</a></li>
+                        <li><a href="/blog">博客</a></li>
+                        <li><a href="/about">关于</a></li>
+                        <li><a href="/contact">联系</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>分类</h4>
+                    <ul>
+                        <li><a href="/category/tutorial">教程</a></li>
+                        <li><a href="/category/tips">技巧</a></li>
+                        <li><a href="/category/news">新闻</a></li>
+                        <li><a href="/category/review">评测</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>联系我们</h4>
+                    <p>
+                        <i class="fas fa-envelope"></i>
+                        contact@tianque.com
+                    </p>
+                    <p>
+                        <i class="fas fa-map-marker-alt"></i>
+                        中国
+                    </p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 天阙教程. 保留所有权利.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
+    <script>
+        // 搜索功能
+        document.getElementById('searchInput').addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase();
+            const blogCards = document.querySelectorAll('.blog-card');
+            
+            blogCards.forEach(card => {
+                const title = card.querySelector('.blog-title').textContent.toLowerCase();
+                const excerpt = card.querySelector('.blog-excerpt').textContent.toLowerCase();
+                
+                if (title.includes(searchTerm) || excerpt.includes(searchTerm)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+        
+        // 分类筛选
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                // 移除所有活动状态
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                // 添加当前活动状态
+                this.classList.add('active');
+                
+                const category = this.getAttribute('data-category');
+                const blogCards = document.querySelectorAll('.blog-card');
+                
+                blogCards.forEach(card => {
+                    if (category === 'all' || card.getAttribute('data-category') === category) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+        
+        // 分页功能
+        document.querySelectorAll('.page-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                if (this.classList.contains('prev') || this.classList.contains('next')) {
+                    // 处理上一页/下一页逻辑
+                    console.log('Navigate to:', this.classList.contains('prev') ? 'previous' : 'next');
+                } else {
+                    // 移除所有活动状态
+                    document.querySelectorAll('.page-btn').forEach(b => b.classList.remove('active'));
+                    // 添加当前活动状态
+                    this.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
