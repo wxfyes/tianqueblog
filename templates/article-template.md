@@ -1,11 +1,12 @@
 ---
 layout: post
 title: "文章标题"
-date: YYYY-MM-DD
+date: 2024-01-01
 category: 分类
 author: wxfyes
 excerpt: "文章摘要，简要描述文章内容，控制在100字以内"
 tags: [标签1, 标签2, 标签3]
+published: false
 ---
 
 # 文章标题

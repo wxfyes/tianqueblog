@@ -17,3 +17,17 @@ url: "https://wxfyes.github.io"
 # 构建设置
 markdown: kramdown
 highlighter: rouge
+
+# 排除文件
+exclude:
+  - templates/
+  - Gemfile
+  - Gemfile.lock
+  - node_modules/
+  - package.json
+  - package-lock.json
+  - start.bat
+  - start.sh
+  - QUICKSTART.md
+  - CHANGELOG.md
+  - WRITING-GUIDE.md
